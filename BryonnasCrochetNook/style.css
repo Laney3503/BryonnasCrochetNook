@@ -1,0 +1,133 @@
+:root {
+  --brand-blue: #57B1DE;
+  --brand-orange: #F0B260;
+  --brand-dark: #1F386E;
+  --muted-text: #5a5a5a;
+  --bg-soft: #f7fbff;
+}
+
+/* FONTS
+--------------------------*/
+.pangolin-regular {
+  font-family: "Pangolin", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.jua-regular {
+  font-family: "Jua", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+/* END OF FONTS
+--------------------------*/
+
+
+/* NAVBAR STUFF 
+--------------------------*/
+.nav{
+    border-style: groove ;
+    border-color:#1F386E;
+    border-width: 5px;
+    padding: 3px;
+    border-radius: 8px;
+    background-color: #57B1DE;
+}
+
+.nav .nav-link{
+    color: var(--bg-soft);
+    font-weight: 600;
+}
+.nav .nav-link.active{
+    background: var(--brand-dark);
+    color: var(--bg-soft);
+    text-shadow: var(--brand-blue) 1px 1px 2px;
+ 
+}
+/* END OF NAVBAR STUFF 
+------------------------*/
+
+/* Container 
+------------------------*/
+.container-fluid{
+
+/*  background-image: linear-gradient(to right, #1F386E, #F0B260);*/
+  font-family: "Jua", sans-serif;
+  color: var(--brand-dark);
+  background: #c6ebfe;
+ 
+
+}
+/* End Of Container 
+------------------------*/
+
+
+/* Custom Carousel 
+------------------------*/
+.custom-carousel{
+  max-width: 900px ;
+  margin: 1.5rem auto;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(31,56,110,0.18);
+  position: relative;
+}
+
+/* force a consistent height (adjust as needed) */
+.custom-carousel .carousel-inner{
+  height: 600px;
+}
+
+/* make images cover the carousel area */
+.custom-carousel .carousel-item img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* caption styling */
+.custom-carousel .carousel-caption{
+  display: block !important;
+  z-index: 60;
+  bottom: 1.25rem;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  max-width: 90%;
+  background: rgba(31,56,110,0.55);
+  color: #fff;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+
+}
+
+/* indicators */
+.custom-carousel .carousel-indicators [data-bs-target]{
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: rgba(255,255,255,0.65);
+  border: none;
+}
+.custom-carousel .carousel-indicators .active{
+  background-color: var(--brand-orange);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+/* controls */
+.custom-carousel .carousel-control-prev,
+.custom-carousel .carousel-control-next{
+  width: 4.5rem;
+  opacity: 0.75;
+}
+.custom-carousel .carousel-control-prev-icon,
+.custom-carousel .carousel-control-next-icon{
+  background-color: var(--brand-dark);
+  border-radius: 50%;
+  padding: 8px;
+  background-size: 18px 18px;
+  filter: drop-shadow(0 4px 10px rgba(0,0,0,0.35));
+}
+/* END OF Custom Carousel 
+------------------------*/
