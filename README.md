@@ -113,6 +113,33 @@ Set `ALLOWED_HOSTS` and `SECRET_KEY` in the environment or in settings; do not u
 3. The server validates input, **saves the order to the database**, and, if email is configured, sends an email to bcn.shop24@gmail.com (Reply-To set to the customer’s email).
 4. View and manage orders in **Django admin** at `/admin/` (Custom Orders).
 
+## Static export (GitHub Pages)
+
+To publish a **static** version of the site (e.g. on GitHub Pages, no Django or database):
+
+1. From the project folder (with venv activated):
+   ```bash
+   python manage.py export_static
+   ```
+   This writes HTML and a copy of `static/` into the **`docs/`** folder. Links are rewritten so they work when served from a subpath like `https://username.github.io/BryonnasCrochetNook/`.
+
+2. **Optional — Custom Order form on the static site:**  
+   The form normally POSTs to `/api/custom-order`, which doesn't exist on a static host. To make it work:
+   - Create a form at [Formspree](https://formspree.io/) and get the form URL.
+   - Run the export with that URL:
+     ```bash
+     STATIC_EXPORT_FORM_URL=https://formspree.io/f/your-form-id python manage.py export_static
+     ```
+   Then the exported Custom Order page will submit to Formspree instead.
+
+3. **Publish on GitHub Pages:**
+   - Commit and push the repo (including the `docs/` folder).
+   - On GitHub: **Settings → Pages → Build and deployment → Source:** "Deploy from a branch".
+   - **Branch:** `main`, **Folder:** `/docs` → **Save**.
+   - The site will be at `https://<username>.github.io/BryonnasCrochetNook/`.
+
+To use a different output folder: `python manage.py export_static --out=export`.
+
 ---
 
 The previous Flask app is saved as `app.py` for reference; the site now runs on Django.
