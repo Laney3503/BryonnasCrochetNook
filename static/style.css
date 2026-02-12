@@ -1693,6 +1693,79 @@ body .product-card .btn-primary:hover {
 }
 
 /* ============================================
+   Dimensional JS effects
+   ============================================ */
+.text-pop {
+  opacity: 0.9;
+  transform: translateY(10px) scale(0.98);
+  letter-spacing: 0.01em;
+}
+
+.text-pop-in {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  text-shadow:
+    0 0 12px rgba(87, 177, 222, 0.2),
+    0 2px 8px rgba(0, 0, 0, 0.28);
+  transition:
+    transform 0.55s cubic-bezier(0.2, 0.8, 0.2, 1),
+    opacity 0.55s ease,
+    text-shadow 0.55s ease;
+}
+
+.feature-card-inner,
+.shop-page .product-card {
+  position: relative;
+  overflow: hidden;
+  --spotlight-x: 50%;
+  --spotlight-y: 50%;
+}
+
+.feature-card-inner::before,
+.shop-page .product-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      260px circle at var(--spotlight-x) var(--spotlight-y),
+      rgba(87, 177, 222, 0.18),
+      rgba(87, 177, 222, 0.08) 35%,
+      transparent 70%
+    );
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.feature-card-inner:hover::before,
+.shop-page .product-card:hover::before {
+  opacity: 1;
+}
+
+.hero-modern__sub,
+.hero-modern__tagline {
+  transition: text-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.hero-modern__sub:hover,
+.hero-modern__tagline:hover {
+  text-shadow: 0 0 16px rgba(87, 177, 222, 0.3);
+  transform: translateY(-1px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .text-pop,
+  .text-pop-in,
+  .hero-modern__sub,
+  .hero-modern__tagline {
+    transform: none !important;
+    transition: none !important;
+    text-shadow: none !important;
+  }
+}
+
+/* ============================================
    Utility: container for other pages
    ============================================ */
 .container-fluid {

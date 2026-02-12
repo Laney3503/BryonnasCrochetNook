@@ -97,3 +97,44 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
+//////////////////////////////
+// Dimensional text + soft highlights
+//////////////////////////////
+document.addEventListener('DOMContentLoaded', () => {
+  const popTargets = document.querySelectorAll(
+    '.hero-modern__sub, .hero-modern__tagline, .feature-title, .shop-section__title, .about-story__heading'
+  );
+  const glowCards = document.querySelectorAll('.feature-card-inner, .shop-page .product-card');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  popTargets.forEach((el) => el.classList.add('text-pop'));
+
+  if (reduceMotion) {
+    popTargets.forEach((el) => el.classList.add('text-pop-in'));
+    return;
+  }
+
+  const popObserver = new IntersectionObserver(
+    (entries, obs) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('text-pop-in');
+        obs.unobserve(entry.target);
+      });
+    },
+    { threshold: 0.2, rootMargin: '0px 0px -30px 0px' }
+  );
+
+  popTargets.forEach((el) => popObserver.observe(el));
+
+  glowCards.forEach((card) => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      card.style.setProperty('--spotlight-x', `${x}px`);
+      card.style.setProperty('--spotlight-y', `${y}px`);
+    });
+  });
+});
+
